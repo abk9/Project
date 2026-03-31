@@ -19,12 +19,16 @@ class Event(models.Model):
 
 
 class Participant(models.Model):
+    GENDER_CHOICES = [
+        ('male', 'Homme'),
+        ('female', 'Femme'),
+    ]
+
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=20)
     birth_date = models.DateField()
-    gender = models.CharField(max_length=10)
-    
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
 
     events = models.ManyToManyField(Event, through='Registration')
 
